@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "username": "JohnDoe",
+      "password": "asik12345",
+      "status": "premium"
+    },
+    {
+      "username": "ThomasMuller",
+      "password": "thomas12345",
+      "status": "basic"
+    },
+    {
+      "username": "vitren",
+      "password": "123",
+      "status": "basic"
+    },
+    {
+      "username": "TonyStark",
+      "password": "stark12345",
+      "status": "premium"
+    }
+  ]
+}
