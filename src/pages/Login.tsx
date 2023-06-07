@@ -1,66 +1,72 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import { AuthContext } from "../context/AuthContext";
+
 import loginImg from "../assets/login3.jpg";
-// import fake credentials
-import { data } from "../dummy/fakeapi.json";
+import api from "../axios/API";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-const Login = () => {
+const schema = Yup.object({
+  username: Yup.string().required("Username required"),
+  password: Yup.string().required("Password required"),
+});
+
+const Login: React.FC = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-  const [cookies, setCookie] = useCookies<string>();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string | number>("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = () => {
-    // if (username !== "" && password !== "") {
-    //   login(username, password);
-    //   navigate("/home");
-    // } else {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Login Failed",
-    //     text: "Fill your username and password",
-    //   });
-    // }
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: schema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
-    if (username === data[0].username && password == data[0].password) {
-      setCookie("username", username, { path: "/" });
-      setCookie("status", data[0].status, { path: "/" });
-      navigate("/Dashboard", {
-        state: {
-          username: username,
-        },
-      });
-    } else if (username === data[1].username && password == data[1].password) {
-      setCookie("username", username, { path: "/" });
-      setCookie("status", data[1].status, { path: "/" });
-      navigate("/home", {
-        state: {
-          username: username,
-        },
-      });
-    } else if (username === data[2].username && password == data[2].password) {
-      setCookie("username", username, { path: "/" });
-      setCookie("status", data[2].status, { path: "/" });
-      navigate("/home", {
-        state: {
-          username: username,
-        },
-      });
+  const LoginHandle = async () => {
+    const user = {
+      username: formik.values.username,
+      password: formik.values.password,
+    };
+
+    if (user.username !== "" && user.password !== "") {
+      try {
+        const response = await api.Login(user.username, user.password);
+        console.log(response);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login Success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/dashboard");
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: "Pastikan Username & Password Benar !",
+        });
+      }
     } else {
       Swal.fire({
         icon: "error",
-        title: "Login Failed",
-        text: "Fill your username and password",
+        title: "Failed",
+        text: "Check your username or password again!",
       });
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full m-10">
       <div className="hidden sm:block">
@@ -72,11 +78,28 @@ const Login = () => {
           <h2 className="text-4xl text-black font-bold text-center">Login</h2>
           <div className="flex flex-col text-black py-2">
             <label>Username</label>
-            <Input id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline ${formik.values.username === "" ? "bg-white" : ""}`}
+              id="username"
+              type="text"
+              placeholder="Username"
+            />{" "}
           </div>
           <div className="flex flex-col text-black py-2">
             <label>Password</label>
-            <Input id="password" name="password" value={password} type="password" onChange={(e) => setPassword(e.target.value)} />
+            <input
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline ${formik.values.password === "" ? "bg-white" : ""}`}
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="********"
+            />
+            <a type="button" className="absolute right-2 mt-3 text-gray-500" onClick={togglePasswordVisibility}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </a>
           </div>
           <div className="flex justify-between text-gray-400 py-2">
             <p className="flex items-center">
@@ -84,7 +107,12 @@ const Login = () => {
             </p>
             <p>Forgot Password</p>
           </div>
-          <Button id="login" label="Login" onClick={() => handleLogin()} />
+
+          <div className="flex items-center justify-center">
+            <button onClick={LoginHandle} className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+              Log In
+            </button>
+          </div>
         </form>
       </div>
     </div>
