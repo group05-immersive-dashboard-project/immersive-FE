@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill, BsFillHouseDashFill, BsPeopleFill, BsFillPersonLinesFill } from "react-icons/bs";
 interface SidebarProps {
   children?: React.ReactNode;
   title: string;
@@ -17,11 +17,13 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
           <BsFillArrowLeftCircleFill className="bg-white text-black text-3xl rounded-full absolute -right-3 top-9 border cursor-pointer border-sky-300 " />
         </div>
         <ul className="flex flex-col py-4">
-          <hr className=" mb-6 border-2 border-gray-500" />
+          <hr className=" mb-6 border-2 border-gray-500 mx-5" />
           <li>
             <Link to={"/dashboard"} className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-blue-500 hover:text-orange-500">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                <i className=""></i>
+                <h3>
+                  <BsFillHouseDashFill />
+                </h3>
               </span>
               <span className="text-sm font-bold">Dashboar</span>
             </Link>
@@ -29,7 +31,9 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
           <li>
             <Link to={"/mentee"} className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-blue-500 hover:text-orange-500">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                <i className=""></i>
+                <h3>
+                  <BsPeopleFill />
+                </h3>
               </span>
               <span className="text-sm font-medium">Mentee</span>
             </Link>
@@ -37,7 +41,9 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
           <li>
             <Link to={"/user"} className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-blue-500 hover:text-orange-500">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                <i className=""></i>
+                <h3>
+                  <BsPeopleFill />
+                </h3>
               </span>
               <span className="text-sm font-medium">User</span>
             </Link>
@@ -45,7 +51,9 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
           <li>
             <Link to={"/class"} className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-blue-500 hover:text-orange-500">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                <i className="bx bx-drink"></i>
+                <h3>
+                  <BsFillPersonLinesFill />
+                </h3>
               </span>
               <span className="text-sm font-medium">Class</span>
             </Link>

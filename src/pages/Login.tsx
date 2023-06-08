@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const schema = Yup.object({
-  username: Yup.string().required("Username required"),
+  email: Yup.string().required("Email required"),
   password: Yup.string().required("Password required"),
 });
 
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
     validationSchema: schema,
@@ -31,13 +31,13 @@ const Login: React.FC = () => {
 
   const LoginHandle = async () => {
     const user = {
-      username: formik.values.username,
+      email: formik.values.email,
       password: formik.values.password,
     };
 
-    if (user.username !== "" && user.password !== "") {
+    if (user.email !== "" && user.password !== "") {
       try {
-        const response = await api.Login(user.username, user.password);
+        const response = await api.Login(user.email, user.password);
         console.log(response);
         Swal.fire({
           position: "center",
@@ -52,14 +52,14 @@ const Login: React.FC = () => {
         Swal.fire({
           icon: "error",
           title: "Failed",
-          text: "Pastikan Username & Password Benar !",
+          text: "Pastikan Email & Password Benar !",
         });
       }
     } else {
       Swal.fire({
         icon: "error",
         title: "Failed",
-        text: "Check your username or password again!",
+        text: "Check your email or password again!",
       });
     }
   };
@@ -77,14 +77,14 @@ const Login: React.FC = () => {
         <form className="max-w-[400px] w-full mx-auto rounded-lg bg-teal-300 p-8 px-8">
           <h2 className="text-4xl text-black font-bold text-center">Login</h2>
           <div className="flex flex-col text-black py-2">
-            <label>Username</label>
+            <label>Email</label>
             <input
-              value={formik.values.username}
+              value={formik.values.email}
               onChange={formik.handleChange}
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline ${formik.values.username === "" ? "bg-white" : ""}`}
-              id="username"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline ${formik.values.email === "" ? "bg-white" : ""}`}
+              id="email"
               type="text"
-              placeholder="Username"
+              placeholder="Email"
             />{" "}
           </div>
           <div className="flex flex-col text-black py-2">

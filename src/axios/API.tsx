@@ -1,4 +1,3 @@
-// File axios.ts
 import axios from "axios";
 
 const instance = axios.create({
@@ -8,12 +7,12 @@ const instance = axios.create({
 interface LoginResponse {}
 
 export default {
-  Login: (username: string, password: string): Promise<LoginResponse> =>
+  Login: (email: string, password: string): Promise<LoginResponse> =>
     instance({
       method: "POST",
       url: "/login",
       data: {
-        username,
+        email,
         password,
       },
     }),
