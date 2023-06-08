@@ -4,8 +4,8 @@ import MenuSidebar from "../components/MenuSidebar";
 const Dashboard = () => {
   return (
     <div>
-      <MenuSidebar title="Dashboard" name="JohnDoe">
-        <p className="text-2xl font-medium">Chart Mantee</p>
+      <MenuSidebar title="Dashboard " name="JohnDoe">
+        <hr className=" mt-24 mb-6 border-2 border-gray-500 mx-5" />
         <div className="">
           <p className="text-black">halaman dashboard</p>
         </div>

@@ -25,7 +25,7 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
                   <BsFillHouseDashFill />
                 </h3>
               </span>
-              <span className="text-sm font-bold">Dashboar</span>
+              <span className="text-sm font-bold">Dashboard</span>
             </Link>
           </li>
           <li>
@@ -62,9 +62,9 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
       </div>
 
       <div className=" h-screen w-5/6">
-        <div className="sticky top-0 flex items-center space-x-4 pl-4 h-16 bg-white shadow-md">
+        <div className="sticky top-3 font-4xl flex items-center space-x-4 pl-4 h-20 bg-white shadow-md">
           <div>
-            <p className="text-black text-2xl">{title}</p>
+            <p className="text-black text-xl">{title}</p>
           </div>
           <div className="flex flex-grow justify-end items-center ">
             <p className="mr-4">

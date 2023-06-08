@@ -17,7 +17,8 @@ const schema = Yup.object({
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [cookies, setCookie] = useCookies<string>(["token"]);
+  const [token] = useState<string>("");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -38,7 +39,11 @@ const Login: React.FC = () => {
     if (user.email !== "" && user.password !== "") {
       try {
         const response = await api.Login(user.email, user.password);
-        console.log(response);
+
+        console.log(response.data);
+
+        setCookie("token", response.data.data.token, { path: "/" });
+
         Swal.fire({
           position: "center",
           icon: "success",
