@@ -39,6 +39,7 @@ const User = () => {
   return (
     <div>
       <MenuSidebar title="User" name="JohnDoe">
+        <div className=" bottom-0 left-0 w-full md:w-270 border-b-4 border-blue-950 mt-24" style={{ top: "12%", left: "1%", height: "0px" }}></div>
         {/* Navbar content */}
         <div className="flex items-center justify-end mt-4">
           {/* Search */}
