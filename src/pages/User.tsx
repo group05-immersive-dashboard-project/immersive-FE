@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-
 import MenuSidebar from "../components/MenuSidebar";
 
 interface Data {
@@ -20,14 +19,14 @@ const User = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Data[]>("http://13.211.154.163/users", {
+        const response = await axios.get<any>("http://13.211.154.163/users", {
           headers: {
             Authorization: `Bearer ${cookies.token}`,
           },
         });
 
-        setData(response.data);
-        console.log("data yang ditampilkan :", response.data);
+        setData(response.data.data);
+        console.log("Data yang ditampilkan:", response.data.data);
       } catch (error) {
         console.error(error);
       }
@@ -39,8 +38,7 @@ const User = () => {
   return (
     <div>
       <MenuSidebar title="User" name="JohnDoe">
-        <div className=" bottom-0 left-0 w-full md:w-270 border-b-4 border-blue-950 mt-24" style={{ top: "12%", left: "1%", height: "0px" }}></div>
-        {/* Navbar content */}
+        <div className="bottom-0 left-0 w-y md:w-270 border-b-4 border-blue-950 mt-24" style={{ top: "12%", left: "1%", height: "0px" }}></div>
         <div className="flex items-center justify-end mt-4">
           {/* Search */}
           <div className="flex items-center mt-10">
@@ -51,10 +49,9 @@ const User = () => {
           {/* Add New Button */}
           <button className="ml-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mt-10">Add New</button>
         </div>
-        <div className="navbar bg-white ">{/* Navbar content */}</div>
-        <div className="overflow-x-auto ">
+        <div className="navbar bg-white"></div>
+        <div className="overflow-x-auto">
           <table className="table text-black">
-            {/* head */}
             <thead className="bg-sky-200 text-black">
               <tr>
                 <th>No</th>
