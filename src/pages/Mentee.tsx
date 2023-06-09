@@ -140,7 +140,35 @@ const MenteeListPage = () => {
           </button>
         </div>
       </div>
-
+      <div className="overflow-x-auto ">
+        <table className="table text-black">
+          {/* head */}
+          <thead className="bg-sky-200 text-black">
+            <tr>
+              <th>No</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Team</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>No</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Team</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       {/* Table and other content */}
     </div>
   );
