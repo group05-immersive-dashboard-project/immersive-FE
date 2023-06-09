@@ -103,7 +103,7 @@ const MenteeListPage = () => {
         <div className="absolute bottom-0 left-0 w-11/12 md:w-270 border-b-4 border-blue-950" style={{ top: "12%", left: "1%", height: "0px" }}></div>
 
         {/* Search dan Add New */}
-        <div className="flex items-center justify-end mt-4">
+        <div className="flex items-center justify-end mt-10">
           {/* Search */}
           <div className="flex items-center">
             <input type="text" value={searchQuery} onChange={handleInputChange} placeholder="Search Mentee" className="px-4 py-2 border border-gray-300 rounded mr-2 focus:outline-none focus:border-blue-500" />

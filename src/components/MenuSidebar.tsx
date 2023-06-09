@@ -17,9 +17,9 @@ const MenuSidebar: FC<SidebarProps> = ({ children, title, name }) => {
           <BsFillArrowLeftCircleFill className="bg-white text-black text-3xl rounded-full absolute -right-3 top-9 border cursor-pointer border-sky-300 " />
         </div>
         <ul className="flex flex-col py-4">
-          <hr className=" mb-6 border-2 border-gray-500 mx-5" />
+          <div className="absolute bottom-0 left-0 w-11/12 md:w-270 border-b-4 border-blue-950 mt-20 " style={{ top: "12%", left: "1%", height: "0px" }}></div>
           <li>
-            <Link to={"/dashboard"} className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-blue-500 hover:text-orange-500">
+            <Link to={"/dashboard"} className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-blue-500 hover:text-orange-500 mt-8">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                 <h3>
                   <BsFillHouseDashFill />

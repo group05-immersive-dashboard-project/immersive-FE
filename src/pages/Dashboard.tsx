@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <div>
       <MenuSidebar title="Dashboard " name="JohnDoe">
-        <hr className=" mt-24 mb-6 border-2 border-gray-500 mx-5" />
+        <div className=" bottom-0 left-0 w-11/12 md:w-270 border-b-4 border-blue-950 mt-24" style={{ top: "12%", left: "1%", height: "0px" }}></div>
         <div className="">
           <p className="text-black">halaman dashboard</p>
         </div>
